@@ -1,0 +1,15 @@
+[project]
+name = "student-attendance-reader"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "black>=26.3.1",
+    "fastapi>=0.135.3",
+    "isort>=8.0.1",
+    "openai>=2.30.0",
+    "pillow>=12.2.0",
+    "python-multipart>=0.0.24",
+    "uvicorn>=0.44.0",
+]

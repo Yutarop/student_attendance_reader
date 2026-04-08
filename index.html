@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学籍番号 OCR システム</title>
+  <meta name="description" content="Student ID OCR System">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <span data-i18n="appTitle">学籍番号 OCR システム</span>
+  </div>
+  <div class="header-right">
+    <div id="lang-toggle">
+      <button class="lang-btn active" id="btn-ja" onclick="setLang('ja')">JA</button>
+      <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <div id="lm-status">
+      <div class="status-dot"></div>
+      <span id="lm-status-text">確認中...</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- LEFT: Camera Panel -->
+  <div class="camera-panel">
+    <div class="step-badge">
+      <span class="step-num" id="step-num">1</span>
+      <span id="step-label">画面をドラッグしてROIを選択</span>
+    </div>
+
+    <div class="canvas-wrapper">
+      <video id="video" autoplay muted playsinline></video>
+      <canvas id="canvas"></canvas>
+      <canvas id="capture-canvas"></canvas>
+      <div id="roi-box"></div>
+      <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">VLMで認識中...</div>
+      </div>
+      <div id="cam-start-overlay">
+        <div class="cam-icon">📷</div>
+        <button class="cam-start-btn" onclick="startCamera()" data-i18n-btn="camStart">カメラを起動</button>
+        <div class="cam-label" data-i18n="camLabel">起動後、画面をドラッグしてROIを選択</div>
+      </div>
+      <div id="mode-indicator"></div>
+    </div>
+
+    <div id="instruction-bar">
+      <span class="instr-icon">💡</span>
+      <span id="instruction-text">カメラを起動してください。起動後、画面をドラッグすると自動でキャプチャしROIを選択できます。</span>
+    </div>
+
+    <div id="result-display">
+      <span class="result-label" data-i18n="resultLabel">認識結果</span>
+      <input id="result-input" type="text" spellcheck="false" autocomplete="off" value="" />
+      <span class="confirm-hint" data-i18n="confirmHint"><kbd>Enter</kbd> で確定</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: List Panel -->
+  <div class="list-panel">
+    <div class="panel-header">
+      <div class="panel-title">
+        <span data-i18n="listTitle">確定済みリスト</span>
+        <span class="count-badge" id="count-badge">0</span>
+      </div>
+    </div>
+
+    <div id="id-list">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📋</div>
+        <div class="empty-text">まだ登録がありません</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="btn btn-primary" id="save-btn" disabled onclick="saveResults()">
+      <span data-i18n="saveBtn">💾 results.txt に保存して終了</span>
+    </button>
+    <button class="btn btn-danger" id="clear-btn" disabled onclick="clearList()">
+      <span data-i18n="clearBtn">🗑 リストをクリア</span>
+    </button>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
