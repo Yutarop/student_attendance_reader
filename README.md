@@ -1,7 +1,7 @@
 # 学籍番号 OCR システム
 WEBカメラで撮影した出席表から学籍番号を認識・保存するアプリです。
 
-https://github.com/user-attachments/assets/67aff837-18fe-456e-82e6-adb2ea257cbe
+https://github.com/user-attachments/assets/f1e045ac-161e-4aee-8b7e-ba991b5688b6
 
 ## セットアップ
 
@@ -24,7 +24,7 @@ uvicorn backend:app --reload --port 8000
 
 ### 4. フロントエンドを開く
 
-ブラウザで `index.html` をクリックし開いてください。
+ `index.html` をクリックしブラウザで開いてください。
 
 ## 操作方法
 
